@@ -3,6 +3,7 @@ package com.web.sales.controller;
 import com.web.sales.models.MicroMarket;
 import com.web.sales.services.MicroMarketService;
 import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/micro_market")
 public class MicroMarket_Controller {
     
+    @Autowired
     private MicroMarketService service;
     
     @GetMapping("/input")

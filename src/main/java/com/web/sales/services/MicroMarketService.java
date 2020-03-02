@@ -1,8 +1,7 @@
 package com.web.sales.services;
 
-import com.web.sales.dao.DiscountCodeRepository;
+
 import com.web.sales.dao.MicroMarketRepository;
-import com.web.sales.models.DiscountCode;
 import com.web.sales.models.MicroMarket;
 import java.util.ArrayList;
 import java.util.List;

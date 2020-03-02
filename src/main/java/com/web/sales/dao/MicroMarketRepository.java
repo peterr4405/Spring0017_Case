@@ -49,7 +49,7 @@ public class MicroMarketRepository implements CrudRepository<MicroMarket, String
 
     @Override
     public void update(MicroMarket entity) {
-        String sql = "update micro_market set radius = ? area_length = ? area_width = ? where zip_code = ?";
+        String sql = "update micro_market set radius = ?, area_length = ?, area_width = ? where zip_code = ?";
         jdbcTemplate.update(sql,entity.getRadius(),entity.getAreaLength(),entity.getAreaWidth(),entity.getZipCode());
         
     }
