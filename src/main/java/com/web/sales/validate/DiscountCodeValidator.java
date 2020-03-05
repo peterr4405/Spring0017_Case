@@ -23,7 +23,8 @@ public class DiscountCodeValidator implements Validator {
         if (discountCode.getRate() != null && discountCode.getRate() < 0 || discountCode.getRate() > 100) {
             errors.rejectValue("rate", "DiscountCode.rate.invalid");
         }
-
+        
+       
     }
 
 }

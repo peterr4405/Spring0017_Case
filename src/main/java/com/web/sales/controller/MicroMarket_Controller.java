@@ -2,10 +2,12 @@ package com.web.sales.controller;
 
 import com.web.sales.models.MicroMarket;
 import com.web.sales.services.MicroMarketService;
+import com.web.sales.validate.MicroMarketValidator;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,10 +17,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/micro_market")
 public class MicroMarket_Controller {
-    
+
     @Autowired
     private MicroMarketService service;
-    
+
+    @Autowired
+    private MicroMarketValidator validator;
+
     @GetMapping("/input")
     public String input(Model model) {
 
@@ -33,7 +38,17 @@ public class MicroMarket_Controller {
     }
 
     @PostMapping("/add")
-    public String add(@ModelAttribute MicroMarket microMarket) {
+    public String add(@ModelAttribute MicroMarket microMarket, Model model, BindingResult result) {
+
+        validator.validate(microMarket, result);
+        if (result.hasErrors()) {
+            List<MicroMarket> list = service.queryAll();
+            model.addAttribute("action", "add");
+            model.addAttribute("readonly", "false");
+            model.addAttribute("list", list);
+            return "micro_market";
+        }
+
         service.add(microMarket);
         return "redirect:./input";
     }
@@ -54,7 +69,16 @@ public class MicroMarket_Controller {
     }
 
     @PostMapping("/update")
-    public String update(@ModelAttribute MicroMarket microMarket) {
+    public String update(@ModelAttribute MicroMarket microMarket,Model model, BindingResult result) {
+        validator.validate(microMarket, result);
+        if (result.hasErrors()) {
+            List<MicroMarket> list = service.queryAll();
+            model.addAttribute("action", "add");
+            model.addAttribute("readonly", "false");
+            model.addAttribute("list", list);
+            return "micro_market";
+        }
+        
         service.update(microMarket);
         return "redirect:./input";
     }
@@ -64,5 +88,5 @@ public class MicroMarket_Controller {
         service.delete(id);
         return "redirect:../input";
     }
-    
+
 }

@@ -47,7 +47,7 @@ public class DiscountCode_Controller {
             model.addAttribute("list", list);
             return "discount_code";
         }
-
+        
         service.add(discountCode);
         return "redirect:./input";
     }
@@ -68,7 +68,16 @@ public class DiscountCode_Controller {
     }
 
     @PostMapping("/update")
-    public String update(@ModelAttribute DiscountCode discountCode) {
+    public String update(@ModelAttribute DiscountCode discountCode, Model model, BindingResult result) {
+        validator.validate(discountCode, result);
+        if (result.hasErrors()) {
+        List<DiscountCode> list = service.queryAll();
+            model.addAttribute("action", "add");
+            model.addAttribute("readonly", "false");
+            model.addAttribute("list", list);
+            return "discount_code";
+        }
+        
         service.update(discountCode);
         return "redirect:./input";
     }
