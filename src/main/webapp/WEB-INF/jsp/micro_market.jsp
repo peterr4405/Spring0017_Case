@@ -33,9 +33,9 @@
                                     <legend> <h2 class="content-subhead">市場區域維護</h2></legend>
 
                                     <form:input path="zipCode" placeholder="區域碼" readonly="${readonly}" /><p />
-                                    <form:input path="radius" placeholder="區域半徑" /><p />
-                                    <form:input path="areaLength" placeholder="區域長度" /><p />
-                                    <form:input path="areaWidth" placeholder="區域寬度" /><p />
+                                    <form:input path="radius" placeholder="區域半徑" />&nbsp;<form:errors path="radius" style="color: red" /><p />
+                                    <form:input path="areaLength" placeholder="區域長度" />&nbsp;<form:errors path="areaLength" style="color: red" /><p />
+                                    <form:input path="areaWidth" placeholder="區域寬度" />&nbsp;<form:errors path="areaWidth" style="color: red" /><p />
 
                                     <button type="submit" class="pure-button pure-button-primary">${action}</button>
                                 </fieldset>
