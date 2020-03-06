@@ -49,8 +49,8 @@ public class ManufacturerrRepository implements CrudRepository<Manufacturer, Int
 
     @Override
     public void update(Manufacturer entity) {
-        String sql = "update manufacturer set name = ?,adderssline1 = ?,addressline2 = ?, city = ?, state = ?, zip = ?, phone = ?, fax = ? ,email = ?, rep = ? where manufacturer_id = ?";
-        jdbcTemplate.update(sql,entity.getName(),entity.getAddressline1(),entity.getAddressline2(),entity.getCity(),entity.getState(),entity.getZip(),entity.getPhone(),entity.getFax(),entity.getEmail(),entity.getRep());
+        String sql = "update manufacturer set name = ?,addressline1 = ?,addressline2 = ?, city = ?, state = ?, zip = ?, phone = ?, fax = ? ,email = ?, rep = ? where manufacturer_id = ?";
+        jdbcTemplate.update(sql,entity.getName(),entity.getAddressline1(),entity.getAddressline2(),entity.getCity(),entity.getState(),entity.getZip(),entity.getPhone(),entity.getFax(),entity.getEmail(),entity.getRep(),entity.getManufacturerId());
         
     }
     

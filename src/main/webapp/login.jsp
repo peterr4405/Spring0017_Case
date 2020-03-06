@@ -23,19 +23,7 @@
                     <input type="submit"  class="pure-button pure-button-primary" value="Login" id='button'/>
                 </fieldset>
             </table>
+            
         </form>
-        <table>
-        <form:form modelAttribute="User" class="pure-form" action="./mvc/login/check">
-            <fieldset  id='label'>
-                <legend><h2 class="content-subhead">Login</h2></legend>
-
-                <form:input path="name" placeholder="帳號"  /><p />
-                <form:input path="pass" placeholder="密碼" /><p />
-
-
-                <button id='button' type="submit" class="pure-button pure-button-primary"/>
-            </fieldset>
-        </form:form>
-        </table>
     </body>
 </html>

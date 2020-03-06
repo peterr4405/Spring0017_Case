@@ -1,6 +1,7 @@
 package com.web.sales.controller;
 
 import com.web.sales.models.ProductCode;
+import com.web.sales.services.DiscountCodeService;
 import com.web.sales.services.ProductCodeService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,28 +16,29 @@ import org.springframework.web.bind.annotation.PostMapping;
 @Controller
 @RequestMapping("/product_code")
 public class ProductCode_Controller {
-    
+
     @Autowired
     private ProductCodeService service;
-    
-    
-    
+
+    @Autowired
+    private DiscountCodeService service_dc;
+
     @RequestMapping("/input")
-    public String input(Model model){
+    public String input(Model model) {
         ProductCode productCode = new ProductCode();
         List<ProductCode> list = service.queryAll();
         model.addAttribute("productCode", productCode);
         model.addAttribute("list", list);
+        model.addAttribute("list_dc", service_dc.queryAll());
         model.addAttribute("action", "add");
         model.addAttribute("readonly", "false");
-        
-        
+
         return "product_code";
     }
-    
-     @PostMapping("/add")
+
+    @PostMapping("/add")
     public String add(@ModelAttribute ProductCode productCode) {
-        
+
         service.add(productCode);
         return "redirect:./input";
     }
@@ -48,6 +50,7 @@ public class ProductCode_Controller {
             List<ProductCode> list = service.queryAll();
             model.addAttribute("productCode", productCode);
             model.addAttribute("list", list);
+            model.addAttribute("list_dc", service_dc.queryAll());
             model.addAttribute("action", "update");
             model.addAttribute("readonly", "true");
             return "product_code";
@@ -67,5 +70,5 @@ public class ProductCode_Controller {
         service.delete(id);
         return "redirect:../input";
     }
-    
+
 }
